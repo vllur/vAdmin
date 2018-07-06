@@ -125,6 +125,7 @@ function vmenu(id,title,button)
 		elseif button==2 then
                parse("restartround 5")
         end
+	end
 end
 
 -- advertisement
@@ -133,6 +134,6 @@ sample.ads={}
 
 
 addhook("minute","sample.message.minute")
-function message.minute()
+function sample.message.minute()
         msg("\169048165110 Thanks for playing with vAdmin script!")
 end
