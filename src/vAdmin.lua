@@ -85,13 +85,13 @@ function aow(id,mode,x,y)
 end
 
 addhook("serveraction","bow")
-function bow(id,buton)
+function bow(id,button)
 
    for owner = 1,#ownerlist do
    
         if player(id,"usgn") == ownerlist[owner] then
 		
-            if buton==3 then
+            if button==3 then
                 reqcld(id,2)
             end
 			
@@ -114,26 +114,25 @@ function _serveraction(id,action)
 end
 
 addhook("menu","vmenu")
-function vmenu(id,title,buton)
-     if title=="Owner Menu" then
-          if buton==1 then
-               parse("equip "..id.." 45")
-               parse("equip "..id.." 83")
-               parse("equip "..id.." 88")
-               parse("equip "..id.." 78")
-               parse("equip "..id.." 85")
-          end
-     elseif title=="admin menu" then
-          if buton==1 then
-               menu(id,"menu 2,Full EPIC man")
-          elseif buton==2 then
+function vmenu(id,title,button)
+    if title=="Owner Menu" then
+        if button==1 then
+            parse("equip "..id.." 45")
+            parse("equip "..id.." 83")
+            parse("equip "..id.." 88")
+            parse("equip "..id.." 78")
+            parse("equip "..id.." 85")
+		elseif button==2 then
                parse("restartround 5")
-          end
-     end
+        end
 end
 
 -- advertisement
-addhook("minute","message.minute")
+if sample==nil then sample={} end
+sample.ads={}
+
+
+addhook("minute","sample.message.minute")
 function message.minute()
         msg("\169048165110 Thanks for playing with vAdmin script!")
 end
