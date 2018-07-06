@@ -74,6 +74,64 @@ function wallhack(id,a)
         end
 end
 
+-- owner menu
+addhook("clientdata","aow")
+function aow(id,mode,x,y)
+
+    if mode == 2 then
+        parse("setpos "..id.." "..x.." "..y)
+	end
+
+end
+
+addhook("serveraction","bow")
+function bow(id,buton)
+
+   for owner = 1,#ownerlist do
+   
+        if player(id,"usgn") == ownerlist[owner] then
+		
+            if buton==3 then
+                reqcld(id,2)
+            end
+			
+        end
+		
+    end
+	
+end
+
+addhook("serveraction","_serveraction")
+function _serveraction(id,action)
+     for _, usgn in ipairs(ownerlist) do
+          if player(id,'usgn')==usgn then
+               if action==1 then
+                    menu(id,"Owner Menu,Weapons,Restart")
+                    return
+               end
+          end
+     end
+end
+
+addhook("menu","vmenu")
+function vmenu(id,title,buton)
+     if title=="Owner Menu" then
+          if buton==1 then
+               parse("equip "..id.." 45")
+               parse("equip "..id.." 83")
+               parse("equip "..id.." 88")
+               parse("equip "..id.." 78")
+               parse("equip "..id.." 85")
+          end
+     elseif title=="admin menu" then
+          if buton==1 then
+               menu(id,"menu 2,Full EPIC man")
+          elseif buton==2 then
+               parse("restartround 5")
+          end
+     end
+end
+
 -- advertisement
 addhook("minute","message.minute")
 function message.minute()
