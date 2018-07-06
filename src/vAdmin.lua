@@ -44,6 +44,36 @@ function vsay(id,txt)
 		end
 end
 
+-- wallhack for admin and owner
+addhook("serveraction","wallhack")
+function wallhack(id,a)
+        for _,usgn in ipairs (adminlist) do
+		
+                if player(id,"usgn") == usgn then
+				
+                        if a==3 then
+						
+							local rot = player(id,"rot")
+							
+							if rot < -90 then 
+								rot = rot + 360
+							end
+							
+							local angle = math.rad(math.abs( rot + 90 )) - math.pi
+							local x = player(id,"x") + math.cos(angle) * 115
+							local y = player(id,"y") + math.sin(angle) * 115
+							
+							if x > 0 and y > 0 and x < map("xsize") * 115 and y < map("ysize") * 115 then
+								parse("setpos "..id.." "..x.." "..y)
+							end
+							
+                        end
+					
+                end
+			
+        end
+end
+
 -- advertisement
 addhook("minute","message.minute")
 function message.minute()
