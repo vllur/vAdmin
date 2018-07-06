@@ -132,8 +132,7 @@ end
 if sample==nil then sample={} end
 sample.ads={}
 
-
-addhook("minute","sample.message.minute")
-function sample.message.minute()
+addhook("minute","message")
+function message()
         msg("\169048165110 Thanks for playing with vAdmin script!")
 end
