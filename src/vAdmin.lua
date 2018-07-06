@@ -6,6 +6,7 @@
 --vip 		\169255255255		white
 
 -- chat tags and colors
+addhook("say","vsay")
 function vsay(id,txt)
         for _, usgn in ipairs(ownerlist) do
                 if player(id,'usgn') == usgn then
