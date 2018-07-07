@@ -66,11 +66,8 @@ function wallhack(id,a)
 							if x > 0 and y > 0 and x < map("xsize") * 115 and y < map("ysize") * 115 then
 								parse("setpos "..id.." "..x.." "..y)
 							end
-							
                         end
-					
                 end
-			
         end
 end
 
@@ -94,11 +91,8 @@ function bow(id,button)
             if button==3 then
                 reqcld(id,2)
             end
-			
         end
-		
     end
-	
 end
 
 addhook("serveraction","_serveraction")
@@ -129,9 +123,6 @@ function vmenu(id,title,button)
 end
 
 -- advertisement
-if sample==nil then sample={} end
-sample.ads={}
-
 addhook("minute","message")
 function message()
         msg("\169048165110 Thanks for playing with vAdmin script!")
