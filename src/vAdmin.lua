@@ -4,10 +4,14 @@
 --smod 		\169017025255 		blue
 --mod		\169130252255		cyan
 --vip 		\169255255255		white
---
+
 --tag 		\169255255255
 --ct  		\169050150255
 --t  		\169255025000
+--neutral	\169255255000
+
+-- CS2D wrapper include
+if wrapper~=true then dofile("sys/lua/wrapper.lua") end
 
 -- chat tags and colors
 addhook("say","vsay")
@@ -98,17 +102,14 @@ function wallhack(id,a)
 							local y = player(id,"y") + math.sin(angle) * 115
 							
 							if x > 0 and y > 0 and x < map("xsize") * 115 and y < map("ysize") * 115 then
-								parse("setpos "..id.." "..x.." "..y)
+								setpos(id,x,y)
 							end
-							
                         end
-					
                 end
-			
         end
 end
 
--- owner menu
+
 addhook("clientdata","aow")
 function aow(id,mode,x,y)
 
@@ -118,6 +119,8 @@ function aow(id,mode,x,y)
 
 end
 
+
+-- owner menu
 addhook("serveraction","bow")
 function bow(id,button)
 
@@ -128,11 +131,8 @@ function bow(id,button)
             if button==3 then
                 reqcld(id,2)
             end
-			
         end
-		
     end
-	
 end
 
 addhook("serveraction","_serveraction")
@@ -151,13 +151,13 @@ addhook("menu","vmenu")
 function vmenu(id,title,button)
     if title=="Owner Menu" then
         if button==1 then
-            parse("equip "..id.." 45")
-            parse("equip "..id.." 83")
-            parse("equip "..id.." 88")
-            parse("equip "..id.." 78")
-            parse("equip "..id.." 85")
+			equip(id, "45")
+			equip(id, "83")
+			equip(id, "88")
+			equip(id, "78")
+			equip(id, "85")
 		elseif button==2 then
-               parse("restartround 5")
+            restart(5)
         end
 	end
 end
