@@ -4,41 +4,75 @@
 --smod 		\169017025255 		blue
 --mod		\169130252255		cyan
 --vip 		\169255255255		white
+--
+--tag 		\169255255255
+--ct  		\169050150255
+--t  		\169255025000
 
 -- chat tags and colors
 addhook("say","vsay")
 function vsay(id,txt)
         for _, usgn in ipairs(ownerlist) do
-                if player(id,'usgn') == usgn then
-					msg("\169255000000"..player(id,"name").." <OWNER>: "..txt)
+                if player(id, "usgn") == usgn then
+						if player(id, "team") == 2 then
+							msg("\169050150255"..player(id,"name").."\169255255255".." <OWNER>: \169255000000"..txt)
+						elseif player(id, "team") == 1 then
+							msg("\169255025000"..player(id,"name").."\169255255255".." <OWNER>: \169255000000"..txt)
+						else
+							msg(player(id,"name").."\169255255255".." <OWNER>: \169255000000"..txt)
+						end
 					return 1
 				end
 		end
         
         for _, usgn in ipairs(adminlist) do
-                if player(id,'usgn') == usgn then
-					msg('\169255000000'..player(id,'name')..' <ADMIN>: '..txt)
+                if player(id, "usgn") == usgn then
+						if player(id, "team") == 2 then
+							msg("\169050150255"..player(id,"name").."\169255255255".." <ADMIN>: \169126252193"..txt)
+						elseif player(id, "team") == 1 then
+							msg("\169255025000"..player(id,"name").."\169255255255".." <ADMIN>: \169126252193"..txt)
+						else
+							msg(player(id,"name").."\169255255255".." <ADMIN>: \169126252193"..txt)
+						end
 					return 1
 				end
 		end
 		
         for _, usgn in ipairs(smodlist) do
-                if player(id,'usgn') == usgn then
-					msg("\169017025255"..player(id,"name").." <S-MOD>: "..txt)
+                if player(id, "usgn") == usgn then
+						if player(id, "team") == 2 then
+							msg("\169050150255"..player(id,"name").."\169255255255".." <S MOD>: \169017025255"..txt)
+						elseif player(id, "team") == 1 then
+							msg("\169255025000"..player(id,"name").."\169255255255".." <S MOD>: \169017025255"..txt)
+						else
+							msg(player(id,"name").."\169255255255".." <S MOD>: \169017025255"..txt)
+						end
 					return 1
 				end
 		end
 		
         for _, usgn in ipairs(modlist) do
-                if player(id,'usgn') == usgn then
-					msg("\169130252255"..player(id,"name").." <MOD>: "..txt)
+                if player(id, "usgn") == usgn then
+						if player(id, "team") == 2 then
+							msg("\169050150255"..player(id,"name").."\169255255255".." <MOD>: \169130252255"..txt)
+						elseif player(id, "team") == 1 then
+							msg("\169255025000"..player(id,"name").."\169255255255".." <MOD>: \169130252255"..txt)
+						else
+							msg(player(id,"name").."\169255255255".." <S MOD>: \169130252255"..txt)
+						end
 					return 1
 				end
 		end
 		
         for _, usgn in ipairs(viplist) do
-                if player(id,'usgn') == usgn then
-					msg("\169255255255"..player(id,"name").." <VIP>: "..txt)
+                if player(id, "usgn") == usgn then
+						if player(id, "team") == 2 then
+							msg("\169050150255"..player(id,"name").."\169255255255".." <VIP>: "..txt)
+						elseif player(id, "team") == 1 then
+							msg("\169255025000"..player(id,"name").."\169255255255".." <VIP>: "..txt)
+						else
+							msg(player(id,"name").."\169255255255".." <VIP>: \169255255255"..txt)
+						end
 					return 1
 				end
 		end
@@ -66,8 +100,11 @@ function wallhack(id,a)
 							if x > 0 and y > 0 and x < map("xsize") * 115 and y < map("ysize") * 115 then
 								parse("setpos "..id.." "..x.." "..y)
 							end
+							
                         end
+					
                 end
+			
         end
 end
 
@@ -91,8 +128,11 @@ function bow(id,button)
             if button==3 then
                 reqcld(id,2)
             end
+			
         end
+		
     end
+	
 end
 
 addhook("serveraction","_serveraction")
