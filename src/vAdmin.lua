@@ -10,79 +10,56 @@
 --t  		\169255025000
 --neutral	\169255255000
 
--- CS2D wrapper include
 if wrapper~=true then dofile("sys/lua/wrapper.lua") end
 
--- chat tags and colors
+function vmsg(id, team, txt, rank, rankcolor)
+	if team == 2 then
+		msg("\169050150255"..player(id,"name").."\169255255255 <"..rank..">: "..rankcolor..txt)
+	elseif team == 1 then
+		msg("\169255025000"..player(id,"name").."\169255255255 <"..rank..">: "..rankcolor..txt)
+	else
+		msg(player(id,"name").."\169255255255 <"..rank..">: "..rankcolor..txt)
+	end
+end	
+
 addhook("say","vsay")
 function vsay(id,txt)
         for _, usgn in ipairs(ownerlist) do
                 if player(id, "usgn") == usgn then
-						if player(id, "team") == 2 then
-							msg("\169050150255"..player(id,"name").."\169255255255".." <OWNER>: \169255000000"..txt)
-						elseif player(id, "team") == 1 then
-							msg("\169255025000"..player(id,"name").."\169255255255".." <OWNER>: \169255000000"..txt)
-						else
-							msg(player(id,"name").."\169255255255".." <OWNER>: \169255000000"..txt)
-						end
+					vmsg(id, player(id, "team"), txt, "Owner", "\169255000000")
 					return 1
 				end
 		end
         
         for _, usgn in ipairs(adminlist) do
                 if player(id, "usgn") == usgn then
-						if player(id, "team") == 2 then
-							msg("\169050150255"..player(id,"name").."\169255255255".." <ADMIN>: \169126252193"..txt)
-						elseif player(id, "team") == 1 then
-							msg("\169255025000"..player(id,"name").."\169255255255".." <ADMIN>: \169126252193"..txt)
-						else
-							msg(player(id,"name").."\169255255255".." <ADMIN>: \169126252193"..txt)
-						end
+					vmsg(id, player(id, "team"), txt, "Admin", "\169126252193")
 					return 1
 				end
 		end
 		
         for _, usgn in ipairs(smodlist) do
                 if player(id, "usgn") == usgn then
-						if player(id, "team") == 2 then
-							msg("\169050150255"..player(id,"name").."\169255255255".." <S MOD>: \169017025255"..txt)
-						elseif player(id, "team") == 1 then
-							msg("\169255025000"..player(id,"name").."\169255255255".." <S MOD>: \169017025255"..txt)
-						else
-							msg(player(id,"name").."\169255255255".." <S MOD>: \169017025255"..txt)
-						end
+					vmsg(id, player(id, "team"), txt, "S-Mod", "\169017025255")
 					return 1
 				end
 		end
 		
         for _, usgn in ipairs(modlist) do
                 if player(id, "usgn") == usgn then
-						if player(id, "team") == 2 then
-							msg("\169050150255"..player(id,"name").."\169255255255".." <MOD>: \169130252255"..txt)
-						elseif player(id, "team") == 1 then
-							msg("\169255025000"..player(id,"name").."\169255255255".." <MOD>: \169130252255"..txt)
-						else
-							msg(player(id,"name").."\169255255255".." <S MOD>: \169130252255"..txt)
-						end
+					vmsg(id, player(id, "team"), txt, "Mod", "\169130252255")
 					return 1
 				end
 		end
 		
         for _, usgn in ipairs(viplist) do
                 if player(id, "usgn") == usgn then
-						if player(id, "team") == 2 then
-							msg("\169050150255"..player(id,"name").."\169255255255".." <VIP>: "..txt)
-						elseif player(id, "team") == 1 then
-							msg("\169255025000"..player(id,"name").."\169255255255".." <VIP>: "..txt)
-						else
-							msg(player(id,"name").."\169255255255".." <VIP>: \169255255255"..txt)
-						end
+					vmsg(id, player(id, "team"), txt, "VIP", "\169255255255")
 					return 1
 				end
 		end
 end
 
--- wallhack for admin and owner
 addhook("serveraction","wallhack")
 function wallhack(id,a)
         for _,usgn in ipairs (adminlist) do
@@ -109,7 +86,6 @@ function wallhack(id,a)
         end
 end
 
-
 addhook("clientdata","aow")
 function aow(id,mode,x,y)
 
@@ -119,8 +95,6 @@ function aow(id,mode,x,y)
 
 end
 
-
--- owner menu
 addhook("serveraction","bow")
 function bow(id,button)
 
