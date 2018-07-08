@@ -1,24 +1,25 @@
-----colors
---owner 	\169255000000 		red
---admin 	\169126252193		mint green
---smod 		\169017025255 		blue
---mod		\169130252255		cyan
---vip 		\169255255255		white
 
---tag 		\169255255255
---ct  		\169050150255
---t  		\169255025000
---neutral	\169255255000
+ownerColor = 		"\169255000000"		--red
+adminColor = 		"\169126252193"		--mint green
+smodColor = 		"\169017025255"		--blue
+modColor = 		"\169130252255"		--cyan
+vipColor =			"\169255255255"		--white
 
-if wrapper~=true then dofile("sys/lua/wrapper.lua") end
+tagColor = 		"\169255255255"
+ctColor =			"\169050150255"
+tColor = 			"\169255025000"
 
-function vmsg(id, team, txt, rank, rankcolor)
+adColor = 			"\169048165110"
+
+dofile("sys/lua/wrapper.lua")
+
+function vmsg(id, team, txt, rank, rankColor)
 	if team == 2 then
-		msg("\169050150255"..player(id,"name").."\169255255255 <"..rank..">: "..rankcolor..txt)
+		msg(ctColor..player(id,"name")..tagColor.." <"..rank..">: "..rankColor..txt)
 	elseif team == 1 then
-		msg("\169255025000"..player(id,"name").."\169255255255 <"..rank..">: "..rankcolor..txt)
+		msg(tColor..player(id,"name")..tagColor.." <"..rank..">: "..rankColor..txt)
 	else
-		msg(player(id,"name").."\169255255255 <"..rank..">: "..rankcolor..txt)
+		msg(player(id,"name")..tagColor.." <"..rank..">: "..rankColor..txt)
 	end
 end	
 
@@ -26,35 +27,35 @@ addhook("say","vsay")
 function vsay(id,txt)
         for _, usgn in ipairs(ownerlist) do
                 if player(id, "usgn") == usgn then
-					vmsg(id, player(id, "team"), txt, "Owner", "\169255000000")
+					vmsg(id, player(id, "team"), txt, "Owner", ownerColor)
 					return 1
 				end
 		end
         
         for _, usgn in ipairs(adminlist) do
                 if player(id, "usgn") == usgn then
-					vmsg(id, player(id, "team"), txt, "Admin", "\169126252193")
+					vmsg(id, player(id, "team"), txt, "Admin", adminColor)
 					return 1
 				end
 		end
 		
         for _, usgn in ipairs(smodlist) do
                 if player(id, "usgn") == usgn then
-					vmsg(id, player(id, "team"), txt, "S-Mod", "\169017025255")
+					vmsg(id, player(id, "team"), txt, "S-Mod", smodColor)
 					return 1
 				end
 		end
 		
         for _, usgn in ipairs(modlist) do
                 if player(id, "usgn") == usgn then
-					vmsg(id, player(id, "team"), txt, "Mod", "\169130252255")
+					vmsg(id, player(id, "team"), txt, "Mod", modColor)
 					return 1
 				end
 		end
 		
         for _, usgn in ipairs(viplist) do
                 if player(id, "usgn") == usgn then
-					vmsg(id, player(id, "team"), txt, "VIP", "\169255255255")
+					vmsg(id, player(id, "team"), txt, "VIP", vipColor)
 					return 1
 				end
 		end
@@ -90,7 +91,7 @@ addhook("clientdata","aow")
 function aow(id,mode,x,y)
 
     if mode == 2 then
-        parse("setpos "..id.." "..x.." "..y)
+		setpos(id,x,y)
 	end
 
 end
@@ -139,5 +140,5 @@ end
 -- advertisement
 addhook("minute","message")
 function message()
-        msg("\169048165110 Thanks for playing with vAdmin script!")
+        msg(adColor.." Thanks for playing with vAdmin script!")
 end
