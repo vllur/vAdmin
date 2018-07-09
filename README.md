@@ -1,8 +1,6 @@
 # vAdmin
-
-#### A simple admin script for CS2D game. 
-
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
+#### A simple admin script for CS2D game. 
 
 It requires presense of the original ```wrapper.lua``` in ```sys/lua```.
 
